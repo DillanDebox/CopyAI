@@ -18,8 +18,6 @@ def main():
     word_count = st.slider("Word Count", min_value=0,max_value=2000,value=500,format="%d words")
     description = st.text_area("Provide a brief description of the the task at hand:")
 
-    llm = ChatOpenAI(temperature=creativity/(1/MAX_TEMP*MAX_VALUE), model="gpt-3.5-turbo", streaming=True, openai_api_key=openai_api_key)
-
     prompt_template = """
     You are a highly skilled copywriter with a strong background in persuasive writing, conversion optimization, and marketing techniques.
     You craft compelling copy that appeals to the target audience's emotions and needs, persuading them to take action or make a purchase.
@@ -37,17 +35,19 @@ def main():
 
     The word count should be {word_count} words
     """
+    
+    if openai_api_key:
+        custom_prompt = PromptTemplate(template=prompt_template, input_variables=["writing_styles", "description","word_count"])
+        llm = ChatOpenAI(temperature=creativity/(1/MAX_TEMP*MAX_VALUE), model="gpt-3.5-turbo", streaming=True, openai_api_key=openai_api_key)
 
-    custom_prompt = PromptTemplate(template=prompt_template, input_variables=["writing_styles", "description","word_count"])
-
-    llm_chain = LLMChain(
-        llm = llm,
-        prompt=custom_prompt,
-    )
-    if st.button("Generate"):
-        with st.spinner("Fetching response..."):
-            llm_response = llm_chain.run(writing_styles=writing_styles, description=description, word_count=word_count)
-            st.write(llm_response)
+        llm_chain = LLMChain(
+            llm = llm,
+            prompt=custom_prompt,
+        )
+        if st.button("Generate"):
+            with st.spinner("Fetching response..."):
+                llm_response = llm_chain.run(writing_styles=writing_styles, description=description, word_count=word_count)
+                st.write(llm_response)
 
 
 if __name__ == '__main__':
