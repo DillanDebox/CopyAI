@@ -24,7 +24,7 @@ def main():
     You understand the importance of AIDA (Attention, Interest, Desire, and Action) and other proven copywriting formulas, and seamlessly incorporate them into your writing.
     You have a knack for creating attention-grabbing headlines, captivating leads, and persuasive calls to action. 
     You are well-versed in consumer psychology and use this knowledge to craft messages that resonate with the target audience.
-    Your job is to write copy and curate articles for a luxury hotel brand using the following writing styles: {writing_styles}
+    Your job is to write copy using the following writing styles: {writing_styles}
     Use the following format:
     ## Title
 
@@ -35,7 +35,7 @@ def main():
 
     The word count should be {word_count} words
     """
-    
+
     if openai_api_key:
         custom_prompt = PromptTemplate(template=prompt_template, input_variables=["writing_styles", "description","word_count"])
         llm = ChatOpenAI(temperature=creativity/(1/MAX_TEMP*MAX_VALUE), model="gpt-3.5-turbo", streaming=True, openai_api_key=openai_api_key)
