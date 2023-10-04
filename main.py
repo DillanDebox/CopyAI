@@ -15,7 +15,7 @@ def main():
     writing_style_options = ["Blogging", "Boutique", "Business", "Creative", "Descriptive", "Elegant", "Exclusive", "Expository", "Journalistic", "Luxurious", "Narrative", "Persuasive", "Poetic", "Technical"]
     writing_styles = st.multiselect("Select writing styles", options=writing_style_options)
     creativity = st.slider("Creativity", min_value=0,max_value=MAX_VALUE,value=80,format="%d%%")
-    word_count = st.slider("Word Count", min_value=0,max_value=2000,value=500,format="%d words")
+    word_count = st.slider("Word Count", min_value=100,max_value=2000,value=500,format="%d words")
     description = st.text_area("Provide a brief description of the the task at hand:")
 
     prompt_template = """
