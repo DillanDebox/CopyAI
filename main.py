@@ -38,7 +38,7 @@ def main():
 
     if openai_api_key:
         custom_prompt = PromptTemplate(template=prompt_template, input_variables=["writing_styles", "description","word_count"])
-        llm = ChatOpenAI(temperature=creativity/(1/MAX_TEMP*MAX_VALUE), model="gpt-3.5-turbo", streaming=True, openai_api_key=openai_api_key)
+        llm = ChatOpenAI(temperature=creativity/(1/MAX_TEMP*MAX_VALUE), model="gpt-3.5-turbo", openai_api_key=openai_api_key)
 
         llm_chain = LLMChain(
             llm = llm,
