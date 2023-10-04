@@ -16,7 +16,7 @@ def main():
     themes = st.multiselect("Select themes:", options=writing_style_options)
     creativity = st.slider("Creativity", min_value=0,max_value=MAX_VALUE,value=80,format="%d%%")
     word_count = st.slider("Word Count", min_value=100,max_value=2000,value=500,format="%d words")
-    description = st.text_area("Provide a brief description of the the task at hand:")
+    description = st.text_area("Provide a brief description of the the task at hand:", placeholder="Enter text here...")
 
     prompt_template = """
     You are a highly skilled copywriter with a strong background in persuasive writing, conversion optimization, and marketing techniques.
