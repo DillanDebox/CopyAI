@@ -7,7 +7,7 @@ MAX_TEMP = 1.5
 MAX_VALUE = 100
 
 def main():
-    st.set_page_config(layout="centered", page_title="Hotel AI",page_icon="🏠")
+    st.set_page_config(layout="centered", page_title="Copy Write",page_icon="📝")
     st.title("Copy Write 📝")
 
     openai_api_key = st.sidebar.text_input("OpenAI API Key", type= "password")
