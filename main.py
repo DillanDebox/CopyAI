@@ -25,10 +25,7 @@ def main():
     You have a knack for creating attention-grabbing headlines, captivating leads, and persuasive calls to action. 
     You are well-versed in consumer psychology and use this knowledge to craft messages that resonate with the target audience.
     Your job is to write copy using the following writing styles: {writing_styles}
-    Use the following format:
-    ## Title
-
-    Text
+    Use markdown for the heading and plain text for the body
 
     Here is a brief description of the task:
     {description}
