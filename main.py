@@ -12,8 +12,8 @@ def main():
 
     openai_api_key = st.sidebar.text_input("OpenAI API Key", type= "password")
 
-    writing_style_options = ["Blogging", "Boutique", "Business", "Creative", "Descriptive", "Elegant", "Exclusive", "Expository", "Journalistic", "Luxurious", "Narrative", "Persuasive", "Poetic", "Technical"]
-    writing_styles = st.multiselect("Select writing styles", options=writing_style_options)
+    writing_style_options = ["Adventurous", "Blogging", "Boutique", "Business", "Creative", "Descriptive", "Elegant", "Exclusive", "Expository", "Journalistic", "Luxurious", "Narrative", "Persuasive", "Poetic", "Technical"]
+    themes = st.multiselect("Select themes", options=writing_style_options)
     creativity = st.slider("Creativity", min_value=0,max_value=MAX_VALUE,value=80,format="%d%%")
     word_count = st.slider("Word Count", min_value=100,max_value=2000,value=500,format="%d words")
     description = st.text_area("Provide a brief description of the the task at hand:")
@@ -24,7 +24,7 @@ def main():
     You understand the importance of AIDA (Attention, Interest, Desire, and Action) and other proven copywriting formulas, and seamlessly incorporate them into your writing.
     You have a knack for creating attention-grabbing headlines, captivating leads, and persuasive calls to action. 
     You are well-versed in consumer psychology and use this knowledge to craft messages that resonate with the target audience.
-    Your job is to write copy using the following writing styles: {writing_styles}
+    Your job is to write copy using the following themes: {themes}
     Use markdown for the heading and plain text for the body
 
     Here is a brief description of the task:
@@ -47,7 +47,7 @@ def main():
     if openai_api_key:
         if st.button("Generate"):
             try:
-                custom_prompt = PromptTemplate(template=prompt_template, input_variables=["writing_styles", "description","word_count"])
+                custom_prompt = PromptTemplate(template=prompt_template, input_variables=["themes", "description","word_count"])
                 llm = ChatOpenAI(temperature=creativity/(1/MAX_TEMP*MAX_VALUE), model="gpt-3.5-turbo", openai_api_key=openai_api_key)
 
                 llm_chain = LLMChain(
@@ -56,7 +56,7 @@ def main():
                 )
                 selected_response = random.choice(responses)
                 with st.spinner(selected_response):
-                    llm_response = llm_chain.run(writing_styles=writing_styles, description=description, word_count=word_count)
+                    llm_response = llm_chain.run(themes=themes, description=description, word_count=word_count)
                     st.write(llm_response)
             except:
                 st.warning("Incorrect API key")
