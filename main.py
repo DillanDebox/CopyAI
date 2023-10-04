@@ -10,7 +10,7 @@ def main():
     st.set_page_config(layout="centered", page_title="Copy Write",page_icon="📝")
     st.title("Copy Write 📝")
 
-    openai_api_key = st.sidebar.text_input("OpenAI API Key", type= "password")
+    openai_api_key = st.sidebar.text_input("OpenAI API Key", type= "password", placeholder="sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
 
     writing_style_options = ["Adventurous", "Blogging", "Boutique", "Business", "Creative", "Descriptive", "Elegant", "Exclusive", "Expository", "Journalistic", "Luxurious", "Narrative", "Persuasive", "Poetic", "Technical"]
     themes = st.multiselect("Select themes:", options=writing_style_options)
