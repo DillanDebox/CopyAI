@@ -1,6 +1,6 @@
 import streamlit as st
+import random
 from langchain.chat_models import ChatOpenAI
-from langchain.llms import OpenAI
 from langchain import PromptTemplate, LLMChain
 
 MAX_TEMP = 1.5
@@ -33,6 +33,17 @@ def main():
     The word count should be {word_count} words
     """
 
+    responses = [
+    "Marching through the vast scrolls of the digital Roman Empire to uncover your response...",
+    "Ink is flowing, preparing the perfect prose...",
+    "Summoning the literary muses for inspiration...",
+    "Wielding the pen of creativity for your response...",
+    "Typing at the speed of imagination for your answer...",
+    "Weaving a tapestry of words to fetch your response...",
+    "Crafting a symphony of syllables for your enlightenment...",
+    "Brewing the alphabet soup of ideas for your request...",
+    "Sculpting the clay of language to deliver your response..."]
+
     if openai_api_key:
         if st.button("Generate"):
             try:
@@ -43,12 +54,12 @@ def main():
                     llm = llm,
                     prompt=custom_prompt,
                 )
-                with st.spinner("Fetching response..."):
+                selected_response = random.choice(responses)
+                with st.spinner(selected_response):
                     llm_response = llm_chain.run(writing_styles=writing_styles, description=description, word_count=word_count)
                     st.write(llm_response)
             except:
                 st.warning("Incorrect API key")
-
 
 if __name__ == '__main__':
     main()
