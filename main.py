@@ -34,7 +34,7 @@ def main():
     """
 
     responses = [
-    "Marching through the vast scrolls of the digital Roman Empire to uncover your response...",
+    "Marching through the vast scrolls of the Roman Empire to uncover your response...",
     "Ink is flowing, preparing the perfect prose...",
     "Summoning the literary muses for inspiration...",
     "Wielding the pen of creativity for your response...",
