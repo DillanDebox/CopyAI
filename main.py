@@ -45,8 +45,6 @@ def main():
     st.set_page_config(layout="centered", page_title="Copy Write",page_icon="📝")
     st.title("Copy Write 📝")
 
-    openai_api_key = st.sidebar.text_input("OpenAI API Key", type= "password", placeholder="sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-
     writing_style_options = ["Adventurous", "Article", "Blogging", "Boutique", "Business", "Creative", "Descriptive", "Editorial", "Elegant", "Exclusive", "Expository", "Journalistic", "Luxurious", "Narrative", "Persuasive", "Poetic", "Technical"]
     styles = st.multiselect("Select styles:", options=writing_style_options)
     creativity = st.slider("Creativity", min_value=0,max_value=MAX_VALUE,value=80,format="%d%%")
