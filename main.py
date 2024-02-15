@@ -42,8 +42,10 @@ def generate(api_key, system_prompt, prompt, creativity=80):
 
 
 def main():
-    st.set_page_config(layout="centered", page_title="Copy Write",page_icon="📝")
-    st.title("Copy Write 📝")
+    st.set_page_config(layout="centered", page_title="Copy AI",page_icon="🤖")
+    st.title("Copy AI 🤖📝")
+
+    openai_api_key = st.secrets["OPENAI_API_KEY"]
 
     writing_style_options = ["Adventurous", "Article", "Blogging", "Boutique", "Business", "Creative", "Descriptive", "Editorial", "Elegant", "Exclusive", "Expository", "Journalistic", "Luxurious", "Narrative", "Persuasive", "Poetic", "Technical"]
     styles = st.multiselect("Select styles:", options=writing_style_options)
