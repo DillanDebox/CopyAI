@@ -1,9 +1,33 @@
+import hmac
 import random
 import streamlit as st
 from openai import OpenAI
 
 MAX_TEMP = 1.5
 MAX_VALUE = 100
+
+def check_password():
+    """Returns `True` if the user had the correct password."""
+
+    def password_entered():
+        """Checks whether a password entered by the user is correct."""
+        if hmac.compare_digest(st.session_state["password"], st.secrets["password"]):
+            st.session_state["password_correct"] = True
+            del st.session_state["password"]  # Don't store the password.
+        else:
+            st.session_state["password_correct"] = False
+
+    # Return True if the password is validated.
+    if st.session_state.get("password_correct", False):
+        return True
+
+    # Show input for password.
+    st.sidebar.text_input(
+        "Password", type="password", on_change=password_entered, key="password"
+    )
+    if "password_correct" in st.session_state:
+        st.error("😕 Password incorrect")
+    return False
 
 def generate(api_key, system_prompt, prompt, creativity=80):
     response = OpenAI(api_key=api_key).ChatCompletion.create(
@@ -68,6 +92,9 @@ def main():
                     st.write(response)
             except:
                 st.warning("Incorrect API key")
+
+if not check_password():
+    st.stop()  # Prevent access to the app if password check fails
 
 if __name__ == '__main__':
     main()
