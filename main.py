@@ -59,13 +59,14 @@ def main():
     prompt = f"""
     # TASK:
     {task}
-
-    # STYLE:
-    Use the following suggested writing styles: {styles}
+    Use the example below to guide your writing.
 
     # EXAMPLE:
     Example of good writing:
     "{example}"
+
+    # STYLE:
+    Use the following suggested writing styles: {styles}
 
     # WORD COUNT:
     The word count should be exactly {word_count} words.
