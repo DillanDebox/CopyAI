@@ -29,7 +29,7 @@ def check_password():
     return False
 
 def generate(api_key, system_prompt, prompt, creativity=80):
-    response = OpenAI(api_key=api_key).ChatCompletion.create(
+    response = OpenAI(api_key=api_key).chat.completions.create(
         model="gpt-4-0125-preview",
         messages=[
             {"role": "system", "content": system_prompt},
@@ -90,7 +90,7 @@ def main():
                     response = generate(openai_api_key, system_prompt.strip(), prompt.strip(), creativity)
                     st.write(response)
             except:
-                st.warning("Incorrect API key")
+                st.warning("Error generating resopne. Please try again.")
 
 if not check_password():
     st.stop()  # Prevent access to the app if password check fails
